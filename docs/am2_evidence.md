@@ -4,57 +4,61 @@ This document evolves with the LLM adaptation project.
 
 ## Problem framing
 
-The project asks when prompting is sufficient and when retrieval or parameter-efficient adaptation is justified.
+The project compares increasingly specialised adaptation strategies rather than assuming model fine-tuning is always required.
 
 ## Prompt engineering
 
-Phase 1 implements zero-shot and fixed few-shot prompting.
+Phase 1 establishes zero-shot and fixed few-shot prompting.
 
 ## Retrieval-assisted prompting
 
-Phase 2 introduces:
+Phase 2 dynamically selects semantically related demonstrations without changing model parameters.
 
-- pluggable embedding encoder
-- semantic demonstration retrieval
-- cosine-similarity ranking
-- dynamic few-shot prompt construction
-- explicit logging of retrieved example ids
+## LoRA / PEFT
 
-The production sentence-transformer dependency is optional; deterministic fake embeddings support CI.
+Phase 3 introduces parameter-efficient fine-tuning.
 
-## Comparative evaluation
+Evidence includes:
 
-The same evaluation harness compares:
+- explicit LoRA hyperparameter configuration
+- configuration validation
+- optional PEFT integration
+- supervised instruction/response record formatting
+- adapter training pipeline
+- base-vs-adapter evaluation
+- trainable-parameter analysis
 
-- zero-shot
-- fixed few-shot
-- retrieved few-shot
+## Parameter efficiency
 
-Metrics remain:
+The project records:
 
-- exact match
-- token-level F1
-- per-example outputs
+- total parameters
+- trainable parameters
+- trainable percentage
 
-This isolates the effect of context-selection strategy before any model weights are changed.
+This demonstrates why LoRA is different from full fine-tuning.
 
-## Software engineering
+## Experimental control
 
-The retrieval component depends on a small encoder protocol, keeping it replaceable and testable.
+The base and adapted model are evaluated using the same target examples and prompt format so adapter impact can be isolated.
 
 ## Reproducibility
 
-Heavy model dependencies remain outside the normal CI path, while deterministic tests cover retrieval logic and prompt assembly.
+Heavy training dependencies are optional and excluded from normal CI.
+
+CI instead verifies the deterministic components required for a correct fine-tuning pipeline.
+
+## Responsible design
+
+The local fixture dataset demonstrates the engineering pipeline but is explicitly documented as too small for claims about general LLM performance.
 
 ## Evidence still to add
 
-- LoRA adapter configuration
-- parameter-efficient fine-tuning
-- base-vs-adapter evaluation
-- trainable-parameter analysis
 - robustness/error analysis
 - experiment tracking
 - model card
-- data-governance considerations
+- training-data governance
+- adapter/model versioning
+- monitoring and rollback
 - deployment/MLOps design
 - final reflection
