@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from modern_llm_benchmark.types import Example
 
-
 SYSTEM_TEXT = (
     "Follow the instruction exactly. Return only the answer and no explanation."
 )
