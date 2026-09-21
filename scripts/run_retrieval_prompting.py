@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import ClassVar
 
 import numpy as np
 
@@ -16,13 +17,13 @@ RESULTS_PATH = Path("results/tables/phase2_retrieval_prompting.csv")
 class KeywordEncoder:
     """Deterministic semantic stand-in used for the CI-safe demo."""
 
-    vocabulary = [
+    vocabulary: ClassVar[tuple[str, ...]] = (
         "opposite",
         "lowercase",
         "number",
         "plus",
         "plural",
-    ]
+    )
 
     def encode(self, texts):
         rows = []
