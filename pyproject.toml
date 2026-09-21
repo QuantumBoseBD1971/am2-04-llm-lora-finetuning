@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "am2-llm-lora-finetuning"
-version = "0.3.0"
+version = "1.0.0"
 description = "Benchmarking zero-shot, few-shot, retrieval-assisted prompting and LoRA fine-tuning."
 readme = "README.md"
 requires-python = ">=3.11"
