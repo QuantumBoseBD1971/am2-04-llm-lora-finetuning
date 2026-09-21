@@ -12,18 +12,29 @@ The project follows:
 
 ## Implemented strategies
 
-### Zero-shot
-Only the target instruction is supplied.
+- zero-shot prompting
+- fixed few-shot prompting
+- semantic retrieval of demonstrations
+- retrieval-assisted few-shot prompting
+- LoRA / PEFT adapter configuration
+- optional supervised adapter training
+- base-vs-adapter evaluation
+- trainable-parameter analysis
 
-### Fixed few-shot
-The same demonstration examples are supplied to every target.
+## LoRA design
 
-### Retrieval-assisted few-shot
-Semantically similar demonstrations are selected dynamically using vector similarity.
+Default educational configuration:
 
-The optional production encoder uses Sentence Transformers; CI uses deterministic injected embeddings.
+- rank: 8
+- alpha: 16
+- dropout: 0.05
+- target modules: `q`, `v`
+
+The project reports both absolute trainable parameter count and trainable percentage.
 
 ## Quick start
+
+CI-safe components:
 
 ```bash
 pip install -e ".[dev]"
@@ -32,35 +43,24 @@ python scripts/run_retrieval_prompting.py
 pytest
 ```
 
-Optional semantic embedding backend:
+Optional LoRA experiment:
 
 ```bash
-pip install -e ".[retrieval]"
+pip install -e ".[finetune]"
+python scripts/train_lora.py
+python scripts/evaluate_lora.py
 ```
-
-Optional local Hugging Face generator:
-
-```bash
-pip install -e ".[llm]"
-```
-
-## Evaluation
-
-- exact match
-- token F1
-- retrieved example ids
-- per-example outputs
 
 ## Development status
 
 - **Phase 1 — complete:** zero-shot and fixed few-shot prompting.
-- **Phase 2 — in progress:** semantic demonstration retrieval.
-- **Phase 3 — planned:** LoRA / PEFT fine-tuning and base-vs-adapter evaluation.
-- **Phase 4 — planned:** robustness, tracking, model card, governance and MLOps.
+- **Phase 2 — complete:** semantic retrieval-assisted prompting.
+- **Phase 3 — in progress:** LoRA / PEFT adaptation and evaluation.
+- **Phase 4 — planned:** robustness, tracking, governance, model card and MLOps.
 
 ## Responsible use
 
-Fine-tuning and retrieved demonstrations can reproduce errors or biases present in source data. Benchmark improvement does not establish high-stakes suitability.
+The bundled fixture exists to demonstrate the adaptation pipeline and is not large enough to support claims about general model improvement. Fine-tuning data must be licensed, reviewed and versioned for real use.
 
 ## Licence
 
