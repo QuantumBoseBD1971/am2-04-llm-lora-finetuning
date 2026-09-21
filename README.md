@@ -4,64 +4,41 @@ A comparative open-source language-model adaptation project.
 
 The project follows:
 
-**zero-shot → few-shot → retrieval-assisted prompting → LoRA fine-tuning**
-
-The aim is to compare increasingly specialised adaptation strategies under one evaluation framework rather than assuming fine-tuning is automatically the best option.
+**zero-shot → fixed few-shot → retrieval-assisted few-shot → LoRA fine-tuning**
 
 ## Research question
 
 > When is prompt engineering sufficient, when does retrieval help, and when does parameter-efficient fine-tuning provide measurable additional value?
 
-## Phase 1 — prompting baseline
+## Implemented strategies
 
-The first phase establishes:
+### Zero-shot
+Only the target instruction is supplied.
 
-- a deterministic instruction/response benchmark fixture
-- prompt formatting
-- zero-shot prompting
-- few-shot prompting
-- exact-match and token-F1 evaluation
-- CI-safe mock generator
-- optional Hugging Face generator
-- tests and GitHub Actions CI
+### Fixed few-shot
+The same demonstration examples are supplied to every target.
 
-The benchmark is intentionally small in CI. Later phases can use a larger public instruction dataset.
+### Retrieval-assisted few-shot
+Semantically similar demonstrations are selected dynamically using vector similarity.
 
-## Later phases
-
-### Phase 2 — retrieval-assisted prompting
-- example retrieval
-- semantic similarity
-- dynamic in-context examples
-- zero-shot vs fixed few-shot vs retrieved few-shot
-
-### Phase 3 — LoRA / PEFT
-- LoRA adapter configuration
-- supervised fine-tuning
-- trainable-parameter comparison
-- base vs adapted model evaluation
-
-### Phase 4 — productionisation
-- robustness/error analysis
-- experiment tracking
-- model card
-- safety and data-governance considerations
-- deployment/MLOps design
-- final AM2 evidence synthesis
+The optional production encoder uses Sentence Transformers; CI uses deterministic injected embeddings.
 
 ## Quick start
 
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-python -m pip install --upgrade pip
 pip install -e ".[dev]"
-
 python scripts/run_prompting_baseline.py
+python scripts/run_retrieval_prompting.py
 pytest
 ```
 
-Optional local open-source model:
+Optional semantic embedding backend:
+
+```bash
+pip install -e ".[retrieval]"
+```
+
+Optional local Hugging Face generator:
 
 ```bash
 pip install -e ".[llm]"
@@ -69,17 +46,21 @@ pip install -e ".[llm]"
 
 ## Evaluation
 
-Initial metrics:
-
 - exact match
-- token-level F1
-- per-example error table
+- token F1
+- retrieved example ids
+- per-example outputs
 
-Later phases add adaptation cost, trainable-parameter count, runtime and robustness.
+## Development status
+
+- **Phase 1 — complete:** zero-shot and fixed few-shot prompting.
+- **Phase 2 — in progress:** semantic demonstration retrieval.
+- **Phase 3 — planned:** LoRA / PEFT fine-tuning and base-vs-adapter evaluation.
+- **Phase 4 — planned:** robustness, tracking, model card, governance and MLOps.
 
 ## Responsible use
 
-This repository is educational. Fine-tuning can reproduce biases or errors present in training data, and benchmark performance does not establish suitability for high-stakes deployment.
+Fine-tuning and retrieved demonstrations can reproduce errors or biases present in source data. Benchmark improvement does not establish high-stakes suitability.
 
 ## Licence
 
