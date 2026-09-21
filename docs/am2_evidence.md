@@ -4,45 +4,50 @@ This document evolves with the LLM adaptation project.
 
 ## Problem framing
 
-The project asks when prompting is sufficient and when model adaptation is justified.
+The project asks when prompting is sufficient and when retrieval or parameter-efficient adaptation is justified.
 
 ## Prompt engineering
 
-Phase 1 implements:
+Phase 1 implements zero-shot and fixed few-shot prompting.
 
-- zero-shot prompting
-- fixed few-shot prompting
-- reusable prompt templates
+## Retrieval-assisted prompting
 
-## Evaluation
+Phase 2 introduces:
 
-Responses are evaluated using:
+- pluggable embedding encoder
+- semantic demonstration retrieval
+- cosine-similarity ranking
+- dynamic few-shot prompt construction
+- explicit logging of retrieved example ids
+
+The production sentence-transformer dependency is optional; deterministic fake embeddings support CI.
+
+## Comparative evaluation
+
+The same evaluation harness compares:
+
+- zero-shot
+- fixed few-shot
+- retrieved few-shot
+
+Metrics remain:
 
 - exact match
 - token-level F1
 - per-example outputs
 
+This isolates the effect of context-selection strategy before any model weights are changed.
+
 ## Software engineering
 
-The repository uses:
-
-- packaged Python modules
-- typed benchmark structures
-- generator interfaces
-- unit tests
-- GitHub Actions CI
+The retrieval component depends on a small encoder protocol, keeping it replaceable and testable.
 
 ## Reproducibility
 
-The core benchmark is deterministic and CI-safe.
-
-A Hugging Face generator is available behind an optional dependency group so model downloads remain separate from the core test path.
+Heavy model dependencies remain outside the normal CI path, while deterministic tests cover retrieval logic and prompt assembly.
 
 ## Evidence still to add
 
-- semantic retrieval of demonstrations
-- retrieval-assisted prompting
-- public instruction dataset
 - LoRA adapter configuration
 - parameter-efficient fine-tuning
 - base-vs-adapter evaluation
@@ -50,5 +55,6 @@ A Hugging Face generator is available behind an optional dependency group so mod
 - robustness/error analysis
 - experiment tracking
 - model card
+- data-governance considerations
 - deployment/MLOps design
 - final reflection

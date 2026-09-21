@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "am2-llm-lora-finetuning"
-version = "0.1.0"
+version = "0.2.0"
 description = "Benchmarking zero-shot, few-shot, retrieval-assisted prompting and LoRA fine-tuning."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -21,6 +21,9 @@ dev = [
 llm = [
   "transformers>=4.55,<5",
   "torch>=2.4"
+]
+retrieval = [
+  "sentence-transformers>=5.0,<6"
 ]
 
 [tool.setuptools.packages.find]
