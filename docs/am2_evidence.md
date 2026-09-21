@@ -1,10 +1,6 @@
 # AM2 Evidence Notes
 
-This document evolves with the LLM adaptation project.
-
-## Problem framing
-
-The project compares increasingly specialised adaptation strategies rather than assuming model fine-tuning is always required.
+This repository demonstrates four progressively more specialised LLM adaptation strategies.
 
 ## Prompt engineering
 
@@ -12,53 +8,62 @@ Phase 1 establishes zero-shot and fixed few-shot prompting.
 
 ## Retrieval-assisted prompting
 
-Phase 2 dynamically selects semantically related demonstrations without changing model parameters.
+Phase 2 dynamically retrieves semantically related demonstrations without modifying model parameters.
 
 ## LoRA / PEFT
 
-Phase 3 introduces parameter-efficient fine-tuning.
+Phase 3 adds parameter-efficient adaptation and records:
 
-Evidence includes:
-
-- explicit LoRA hyperparameter configuration
-- configuration validation
-- optional PEFT integration
-- supervised instruction/response record formatting
-- adapter training pipeline
-- base-vs-adapter evaluation
-- trainable-parameter analysis
-
-## Parameter efficiency
-
-The project records:
-
+- LoRA rank / alpha / dropout
+- target modules
 - total parameters
 - trainable parameters
 - trainable percentage
+- base-vs-adapter evaluation
 
-This demonstrates why LoRA is different from full fine-tuning.
+## Robustness and error analysis
 
-## Experimental control
+Phase 4 adds deterministic error flags and per-strategy summaries, including:
 
-The base and adapted model are evaluated using the same target examples and prompt format so adapter impact can be isolated.
+- exact-match errors
+- partial token matches
+- empty outputs
 
-## Reproducibility
+## Experiment tracking
 
-Heavy training dependencies are optional and excluded from normal CI.
+A lightweight immutable JSONL registry records:
 
-CI instead verifies the deterministic components required for a correct fine-tuning pipeline.
+- run id
+- timestamp
+- strategy
+- parameters
+- metrics
+- artefact references
+- notes
 
-## Responsible design
+## Data governance
 
-The local fixture dataset demonstrates the engineering pipeline but is explicitly documented as too small for claims about general LLM performance.
+The project documents training-data provenance, licensing, train/evaluation separation, leakage control, sensitive-data review and retention considerations.
 
-## Evidence still to add
+## MLOps
 
-- robustness/error analysis
-- experiment tracking
-- model card
-- training-data governance
-- adapter/model versioning
-- monitoring and rollback
-- deployment/MLOps design
-- final reflection
+The deployment design treats the base model and adapter as separately versioned artefacts.
+
+It covers:
+
+- immutable adapters
+- promotion aliases
+- monitoring
+- regression checks
+- rollback
+- upstream base-model revision tracking
+
+## Responsible AI
+
+The local fixture is intentionally too small for claims about general model quality.
+
+A real fine-tuning project requires a licensed and representative training set, a held-out evaluation set, broader regression testing and appropriate human oversight.
+
+## Reflection
+
+The project demonstrates that prompting, retrieval and LoRA are different adaptation mechanisms with different operational costs. Model quality must therefore be considered alongside parameter efficiency, governance, reproducibility and lifecycle complexity.
