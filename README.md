@@ -73,3 +73,12 @@ The bundled fixture demonstrates the engineering workflow but is not sufficient 
 ## Licence
 
 Code: MIT. External models/datasets retain their original licences.
+
+
+## Real experiment evidence
+
+A manual GitHub Actions workflow named **Run real LLM adaptation experiment** executes the prompting/retrieval pipeline and can optionally train/evaluate the LoRA adapter.
+
+The standard run uses real Hugging Face generation and real SentenceTransformer retrieval. The optional LoRA run adds PEFT fine-tuning and base-vs-adapter evaluation.
+
+See docs/running_real_experiment.md.
