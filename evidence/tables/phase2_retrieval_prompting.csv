@@ -1,0 +1,13 @@
+example_id,prompt_type,expected,output,exact_match,token_f1,retrieved_example_ids
+e1,zero_shot,decrease,decrease,1.0,1.0,
+e1,fixed_few_shot,decrease,decrease,1.0,1.0,
+e1,retrieved_few_shot,decrease,decrease,1.0,1.0,"d1,d2"
+e2,zero_shot,hello,hello,1.0,1.0,
+e2,fixed_few_shot,hello,hello,1.0,1.0,
+e2,retrieved_few_shot,hello,hello,1.0,1.0,"d2,d1"
+e3,zero_shot,5,5,1.0,1.0,
+e3,fixed_few_shot,5,5,1.0,1.0,
+e3,retrieved_few_shot,5,5,1.0,1.0,"d3,d1"
+e4,zero_shot,batteries,batteries,1.0,1.0,
+e4,fixed_few_shot,batteries,batteries,1.0,1.0,
+e4,retrieved_few_shot,batteries,batteries,1.0,1.0,"d1,d2"

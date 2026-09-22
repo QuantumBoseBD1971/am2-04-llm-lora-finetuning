@@ -1,0 +1,8 @@
+{
+  "project": "am2-04-llm-lora-finetuning",
+  "deterministic_prompting_executed": true,
+  "retrieval_prompting_executed": true,
+  "real_hf_prompting_executed": true,
+  "lora_training_executed": false,
+  "lora_evaluation_executed": false
+}

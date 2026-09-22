@@ -1,0 +1,9 @@
+example_id,prompt_type,expected,output,exact_match,token_f1
+e1,zero_shot,decrease,decrease,1.0,1.0
+e2,zero_shot,hello,hello,1.0,1.0
+e3,zero_shot,5,5,1.0,1.0
+e4,zero_shot,batteries,batteries,1.0,1.0
+e1,few_shot,decrease,decrease,1.0,1.0
+e2,few_shot,hello,hello,1.0,1.0
+e3,few_shot,5,5,1.0,1.0
+e4,few_shot,batteries,batteries,1.0,1.0
