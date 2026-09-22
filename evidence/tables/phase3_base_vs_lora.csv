@@ -1,0 +1,9 @@
+model,example_id,expected,output,exact_match,token_f1
+base,e1,decrease,increase,0.0,0.0
+base,e2,hello,hELLO,1.0,1.0
+base,e3,5,Two plus three.,0.0,0.0
+base,e4,batteries,battery is a term used to refer to a unit of energy.,0.0,0.0
+lora_adapter,e1,decrease,increase,0.0,0.0
+lora_adapter,e2,hello,hELLO,1.0,1.0
+lora_adapter,e3,5,3,0.0,0.0
+lora_adapter,e4,batteries,battery is a term used to refer to a unit of energy.,0.0,0.0

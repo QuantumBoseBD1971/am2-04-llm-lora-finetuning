@@ -23,6 +23,19 @@ This evidence pack consolidates outputs from completed prompting, retrieval and 
 - e4 / fixed_few_shot: expected='batteries', output='battery'
 - e4 / retrieved_few_shot: expected='batteries', output='battery'
 
+## Base model vs LoRA adapter
+
+- base: exact match=0.2500, token F1=0.2500
+- lora_adapter: exact match=0.2500, token F1=0.2500
+
+## LoRA training efficiency
+
+- Base model: **google/flan-t5-small**
+- Trainable parameters: **344064**
+- Total parameters: **77305216**
+- Trainable percentage: **0.4451%**
+- Training loss: **2.9598**
+
 ## Evidence files
 
 - tables/phase1_prompting_baseline.csv

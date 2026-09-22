@@ -3,6 +3,6 @@
   "deterministic_prompting_executed": true,
   "retrieval_prompting_executed": true,
   "real_hf_prompting_executed": true,
-  "lora_training_executed": false,
-  "lora_evaluation_executed": false
+  "lora_training_executed": true,
+  "lora_evaluation_executed": true
 }

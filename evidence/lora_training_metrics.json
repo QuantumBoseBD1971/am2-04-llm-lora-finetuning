@@ -1,0 +1,7 @@
+{
+  "base_model": "google/flan-t5-small",
+  "trainable_parameters": 344064,
+  "total_parameters": 77305216,
+  "trainable_percentage": 0.445072166928555,
+  "train_loss": 2.9597877661387124
+}
